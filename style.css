@@ -9,11 +9,10 @@ body{
     background:#000;
     color:#fff;
     background-image: url(./logonaodefinida.png);
-    background-size: 500px;
+    background-size: 40vw;          /* proporcional à tela */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    
 }
 
 /* NAVBAR */
@@ -24,31 +23,12 @@ header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:25px 60px;
+    padding:20px 5vw;              /* antes era 60px fixo */
     z-index:10;
 }
 
-.sobre{
-    text-align: center;
-    color: #00ff88;
-}
-
-
-
-.conteudo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(36, 36, 36, 0.6);
-    max-width: 900px;
-    height: 700px;
-    margin: 50px auto;
-    padding: 20px;
-    border-radius: 10px;
-}
-
 .logo{
-    font-size:24px;
+    font-size:clamp(18px, 2.5vw, 24px);
     letter-spacing:4px;
 }
 
@@ -65,34 +45,32 @@ header{
     color:#000;
 }
 
-/* HERO SECTION */
+/* HERO */
 .hero{
-    position:relative;
-    height:100vh;
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
     text-align:center;
+    padding:120px 20px 60px; /* espaço pro header fixo */
 }
 
-
-
 .hero-content{
-    position:relative;
+    width:90%;
     max-width:900px;
     background-color: rgba(36, 36, 36, 0.6);
-    padding: 50px;
-    border-radius: 15px;
+    padding:clamp(25px, 4vw, 50px);
+    border-radius:15px;
 }
 
 .hero-content h1{
-    font-size:90px;
-    letter-spacing:10px;
+    font-size:clamp(36px, 8vw, 90px);
+    letter-spacing:clamp(2px, 1vw, 10px);
     margin-bottom:20px;
 }
 
 .hero-content p{
-    font-size:18px;
+    font-size:clamp(14px, 2.5vw, 18px);
     line-height:1.6;
     color:#ccc;
     margin-bottom:40px;
@@ -102,15 +80,19 @@ header{
     display:flex;
     gap:20px;
     justify-content:center;
+    flex-wrap:wrap;
+}
+
+.primary-btn, .secondary-btn{
+    padding:15px 35px;
+    text-decoration:none;
+    transition:0.3s;
 }
 
 .primary-btn{
-    text-decoration:none;
     background:#00ff88;
     color:#000;
-    padding:15px 35px;
     font-weight:bold;
-    transition:0.3s;
 }
 
 .primary-btn:hover{
@@ -118,11 +100,8 @@ header{
 }
 
 .secondary-btn{
-    text-decoration:none;
     border:1px solid #fff;
     color:#fff;
-    padding:15px 35px;
-    transition:0.3s;
 }
 
 .secondary-btn:hover{
@@ -130,29 +109,7 @@ header{
     color:#000;
 }
 
-.scroll-indicator {
-    position: fixed;
-    bottom: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 50px;
-    cursor: pointer;
-    z-index: 999;
-}
-
-.scroll-indicator span {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 20px;
-    height: 20px;
-    border-left: 3px solid #00ff88;
-    border-bottom: 3px solid #00ff88;
-    transform: translateX(-50%) rotate(-45deg);
-    animation: arrowDown 1.5s infinite;
-}
-
+/* SETA */
 .scroll-indicator{
     position: fixed;
     bottom: 25px;
@@ -165,26 +122,43 @@ header{
     transition: opacity .4s ease;
 }
 
+.scroll-indicator span{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    border-left: 3px solid #00ff88;
+    border-bottom: 3px solid #00ff88;
+    transform: translateX(-50%) rotate(-45deg);
+    animation: arrowDown 1.5s infinite;
+}
+
 .scroll-indicator.hide{
-    opacity: 0;
-    pointer-events: none;
+    opacity:0;
+    pointer-events:none;
 }
 
-@keyframes arrowDown {
-    0% {
-        top: 0;
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        top: 20px;
-        opacity: 0;
-    }
+@keyframes arrowDown{
+    0%{ top:0; opacity:0; }
+    50%{ opacity:1; }
+    100%{ top:20px; opacity:0; }
 }
 
-.container{
-    height: 500px;      /* AQUI você aumenta o tamanho do site */
-    margin: 0 auto;     /* centraliza */
+/* RESPONSIVO CELULAR */
+@media (max-width:768px){
+
+    header{
+        padding:15px 20px;
+    }
+
+    .buttons{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .primary-btn, .secondary-btn{
+        width:100%;
+        text-align:center;
+    }
 }
